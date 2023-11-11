@@ -1,10 +1,12 @@
 class Animation {
   float x=1; //by default it will be 1
   float shrinkLimit; //To what scale it should shrink
-
+  int halfWidth,halfHeight
   public Animation(float value) {
 
     shrinkLimit = value;
+    halfWidth=width>>1;
+    halfHeight=height>>1;
   }
 
   private void shrink(PImage image) {
@@ -12,7 +14,8 @@ class Animation {
 
     background(r);
     pushMatrix();
-    translate(width/2, height/2);
+    //translate(width/2, height/2);
+    translate(halfWidth, halfHeight);
     scale(x);
     imageMode(CENTER);
     image(image, 0, 0);
@@ -21,7 +24,7 @@ class Animation {
       x=0;
     } else {
       x=lerp(x, 0.0, 0.01);
-      println(x);
+     // println(x);
     }
   }
 
